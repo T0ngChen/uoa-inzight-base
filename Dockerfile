@@ -16,6 +16,8 @@ FROM debian:jessie
 
 MAINTAINER "Science IS Team" ws@sit.auckland.ac.nz
 
+ENV R_PACKAGES '"rmarkdown", "shiny", "DT", "RJSONIO"'
+
 # Add the CRAN PPA to get all versions of R and install base R and required packages
 # install shiny server and clean up all downloaded files to make sure the image remains lean as much as possible
 # NOTE: we group a lot of commands together to reduce the number of layers that Docker creates in building this image
@@ -32,7 +34,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 381BA480 \
     && wget --no-verbose -O libssl.deb http://ftp.us.debian.org/debian/pool/main/o/openssl/libssl0.9.8_0.9.8o-4squeeze14_amd64.deb \
     && dpkg -i libssl.deb \
     && rm -f libssl.deb \
-    && R -e "install.packages(c('rmarkdown', 'shiny', 'DT'), repos='http://cran.rstudio.com/', lib='/usr/lib/R/site-library')" \
+    && R -e "install.packages(c(${R_PACKAGES}), repos='http://cran.rstudio.com/', lib='/usr/lib/R/site-library')" \
     && wget --no-verbose -O shiny-server.deb https://download3.rstudio.org/ubuntu-12.04/x86_64/shiny-server-1.4.0.756-amd64.deb \
     && dpkg -i shiny-server.deb \
     && rm -f shiny-server.deb \
