@@ -44,3 +44,5 @@ EXPOSE 3838
 
 # since this forms the base image, we do NOT intend to start any process
 # treat this like abstract class :)
+
+CMD ["sudo", "-u", "shiny", "shiny-server"]
