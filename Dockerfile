@@ -58,7 +58,6 @@ RUN apt-get update && apt-get install -y gnupg2 \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # expose ports
-EXPOSE 3838
 
 # we do NOT initiate any process - treat this image as abstract class equivalent
 
