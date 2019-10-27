@@ -25,7 +25,11 @@ RUN apt-get update && apt-get install -y gnupg2 \
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FCAE2A0E115C3D8A \
 #   && echo "deb http://cran.stat.auckland.ac.nz/bin/linux/debian jessie-cran34/" | tee -a /etc/apt/sources.list.d/R.list \
     && echo "deb http://cran.stat.auckland.ac.nz/bin/linux/debian buster-cran35/" | tee -a /etc/apt/sources.list.d/R.list \
+    && apt-get install python-software-properties \
+    && add-apt-repository ppa:webupd8team/java \
     && apt-get update \
+    && apt-get install oracle-java8-installer \
+RUN apt-get update \
     && apt-get install -y -q \
         r-base-core \
         libssl-dev \
