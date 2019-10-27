@@ -49,7 +49,7 @@ RUN apt-get update && apt-get install -y gnupg2 \
     #&& dpkg -i shiny-server.deb \
     && gdebi -y shiny-server.deb
     && chmod +x /opt/shiny-server.sh \
-    && rm -f shiny-server-1.5.12.933-amd64.deb \
+    && rm -f shiny-server.deb \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
