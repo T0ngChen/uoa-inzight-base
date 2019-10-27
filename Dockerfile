@@ -44,8 +44,8 @@ RUN apt-get update && apt-get install -y gnupg2 \
     && dpkg -i libssl.deb \
     && rm -f libssl.deb \
     && sudo R CMD javareconf \
-    && apt-get install r-cran-rjava \
-    && apt-get install libgdal-dev libproj-dev \
+    && apt-get install -y -q r-cran-rjava \
+    && apt-get install -y -q libgdal-dev libproj-dev \
     && R -e "install.packages('rJava', repos = 'https://cran.r-project.org', type = 'source', dependencies = TRUE)" \ 
     && R -e "install.packages('rmarkdown', dependencies = TRUE, repos='http://cran.rstudio.com/', lib='/usr/lib/R/site-library')" \
     && R -e "install.packages('shiny', dependencies = TRUE, repos='http://cran.rstudio.com/', lib='/usr/lib/R/site-library')" \
