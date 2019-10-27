@@ -9,7 +9,7 @@
 # ---------------------------------------------
 
 # start with a light-weight base image
-FROM debian:jessie
+FROM debian:buster
 
 MAINTAINER "Science IS Team" ws@sit.auckland.ac.nz
 
