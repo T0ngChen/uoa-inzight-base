@@ -20,7 +20,7 @@ ENV BUILD_DATE "2018-04-29"
 # NOTE: we group a lot of commands together to reduce the number of layers that Docker creates in building this image
 
 COPY shiny-server.sh /opt/
-
+RUN apt-get update && apt-get install -y gnupg2
 RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FCAE2A0E115C3D8A \
 #   && echo "deb http://cran.stat.auckland.ac.nz/bin/linux/debian jessie-cran34/" | tee -a /etc/apt/sources.list.d/R.list \
     && echo "deb http://cran.stat.auckland.ac.nz/bin/linux/debian buster-cran35/" | tee -a /etc/apt/sources.list.d/R.list \
