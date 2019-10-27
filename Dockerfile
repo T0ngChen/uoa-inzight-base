@@ -29,6 +29,7 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FCAE2A0E115C3D8A \
         r-base-core \
         libssl-dev \
         libssl1.0.0 \
+        gnupg2 \
         libxml2-dev \
         libcairo2-dev \
         libxt-dev \
