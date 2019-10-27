@@ -25,11 +25,7 @@ RUN apt-get update && apt-get install -y gnupg2 \
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FCAE2A0E115C3D8A \
 #   && echo "deb http://cran.stat.auckland.ac.nz/bin/linux/debian jessie-cran34/" | tee -a /etc/apt/sources.list.d/R.list \
     && echo "deb http://cran.stat.auckland.ac.nz/bin/linux/debian buster-cran35/" | tee -a /etc/apt/sources.list.d/R.list \
-    && apt-get install python-software-properties \
-    && add-apt-repository ppa:webupd8team/java \
     && apt-get update \
-    && apt-get install oracle-java8-installer \
-RUN apt-get update \
     && apt-get install -y -q \
         r-base-core \
         libssl-dev \
@@ -39,15 +35,17 @@ RUN apt-get update \
         libcairo2-dev \
         libxt-dev \
         libcurl4-openssl-dev \
-        openjdk-8-jdk \
-        openjdk-8-jre \
         sudo \
         wget \
         gdebi-core \
+        default-jre \
+        default-jdk \
     && wget --no-verbose -O libssl.deb https://mirrors.mediatemple.net/debian-archive/debian/pool/main/o/openssl/libssl0.9.8_0.9.8o-4squeeze14_amd64.deb \
     && dpkg -i libssl.deb \
     && rm -f libssl.deb \
-    && sudo R CMD javareconf JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/ \
+    && sudo R CMD javareconf \
+    && apt-get install r-cran-rjava \
+    && apt-get install libgdal-dev libproj-dev \
     && R -e "install.packages('rJava', repos = 'https://cran.r-project.org', type = 'source', dependencies = TRUE)" \ 
     && R -e "install.packages('rmarkdown', dependencies = TRUE, repos='http://cran.rstudio.com/', lib='/usr/lib/R/site-library')" \
     && R -e "install.packages('shiny', dependencies = TRUE, repos='http://cran.rstudio.com/', lib='/usr/lib/R/site-library')" \
