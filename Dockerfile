@@ -29,7 +29,7 @@ RUN apt-get update && apt-get install -y gnupg2 \
     && apt-get install -y -q \
         r-base-core \
         libssl-dev \
-        libssl1.0.0 \
+ #       libssl1.0.0 \
         gnupg2 \
         libxml2-dev \
         libcairo2-dev \
