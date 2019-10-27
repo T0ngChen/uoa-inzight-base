@@ -34,18 +34,22 @@ RUN apt-get update && apt-get install -y gnupg2 \
         libxml2-dev \
         libcairo2-dev \
         libxt-dev \
+        libcurl4-openssl-dev \
+        openjdk-7-jdk \
         sudo \
         wget \
+        gdebi-core \
     && wget --no-verbose -O libssl.deb https://mirrors.mediatemple.net/debian-archive/debian/pool/main/o/openssl/libssl0.9.8_0.9.8o-4squeeze14_amd64.deb \
     && dpkg -i libssl.deb \
     && rm -f libssl.deb \
     && R -e "install.packages('rmarkdown', dependencies = TRUE, repos='http://cran.rstudio.com/', lib='/usr/lib/R/site-library')" \
     && R -e "install.packages('shiny', dependencies = TRUE, repos='http://cran.rstudio.com/', lib='/usr/lib/R/site-library')" \  
     && R -e "install.packages('DT', dependencies = TRUE, repos='http://cran.rstudio.com/', lib='/usr/lib/R/site-library')" \
-    && wget --no-verbose -O shiny-server.deb https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.12.933-amd64.deb \
-    && dpkg -i shiny-server.deb \
+    && wget https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.12.933-amd64.deb \
+    #&& dpkg -i shiny-server.deb \
+    && gdebi -y shiny-server-1.5.12.933-amd64.deb
     && chmod +x /opt/shiny-server.sh \
-    && rm -f shiny-server.deb \
+    && rm -f shiny-server-1.5.12.933-amd64.deb \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
