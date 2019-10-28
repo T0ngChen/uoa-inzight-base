@@ -39,6 +39,11 @@ RUN apt-get update && apt-get install -y gnupg2 \
         gdebi-core \
         default-jre \
         default-jdk \
+        xtail \
+        pandoc \
+    pandoc-citeproc \
+        
+        
     && wget --no-verbose -O libssl.deb https://mirrors.mediatemple.net/debian-archive/debian/pool/main/o/openssl/libssl0.9.8_0.9.8o-4squeeze14_amd64.deb \
     && dpkg -i libssl.deb \
     && rm -f libssl.deb \
