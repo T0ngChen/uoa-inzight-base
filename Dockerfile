@@ -9,7 +9,7 @@
 # ---------------------------------------------
 
 # start with a light-weight base image
-FROM debian:buster
+FROM debian:stretch 
 
 MAINTAINER "Science IS Team" ws@sit.auckland.ac.nz
 
@@ -23,7 +23,7 @@ ENV BUILD_DATE "2018-04-29"
 RUN apt-get update && apt-get install -y gnupg2 \
     && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FCAE2A0E115C3D8A \
 #   && echo "deb http://cran.stat.auckland.ac.nz/bin/linux/debian jessie-cran34/" | tee -a /etc/apt/sources.list.d/R.list \
-    && echo "deb http://cran.stat.auckland.ac.nz/bin/linux/debian buster-cran35/" | tee -a /etc/apt/sources.list.d/R.list \
+    && echo "deb http://cran.stat.auckland.ac.nz/bin/linux/debian stretch-cran35/" | tee -a /etc/apt/sources.list.d/R.list \
     && apt-get update \
     && apt-get install -y -q \
         r-base-core \
