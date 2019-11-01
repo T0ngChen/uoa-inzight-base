@@ -53,9 +53,8 @@ RUN apt-get update && apt-get install -y gnupg2 \
     && R -e "install.packages('rmarkdown', dependencies = TRUE, repos='http://cran.rstudio.com/', lib='/usr/lib/R/site-library')" \
     && R -e "install.packages('shiny', dependencies = TRUE, repos='http://cran.rstudio.com/', lib='/usr/lib/R/site-library')" \
     && R -e "install.packages('DT', dependencies = TRUE, repos='http://cran.rstudio.com/', lib='/usr/lib/R/site-library')" \
-    && rm -rf /tmp/* /var/tmp/*
 # expose ports
-&& wget --no-verbose -O shiny-server.deb https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.12.933-amd64.deb \
+    && wget --no-verbose -O shiny-server.deb https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.12.933-amd64.deb \
     && dpkg -i shiny-server.deb \
     && chmod +x /opt/shiny-server.sh \
     && rm -f shiny-server.deb \
