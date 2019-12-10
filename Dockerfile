@@ -8,27 +8,25 @@
 #
 # ---------------------------------------------
 
-# start with a light-weight base image
-FROM debian:buster 
+# Install R version 3.5
+FROM r-base:3.6.1
 
-MAINTAINER "Science IS Team" ws@sit.auckland.ac.nz
+# Install Ubuntu packages
+RUN apt-get update && apt-get install -y \
+    sudo \
+    gdebi-core \
+    pandoc \
+    pandoc-citeproc \
+    libcurl4-gnutls-dev \
+    libcairo2-dev/unstable \
+    libxt-dev \
+    libssl-dev
 
-ENV BUILD_DATE "2018-04-29"
 
-# Add the CRAN PPA to get all versions of R and install base R and required packages
-# install shiny server and clean up all downloaded files to make sure the image remains lean as much as possible
-# NOTE: we group a lot of commands together to reduce the number of layers that Docker creates in building this image
-
-COPY shiny-server.sh /opt/
-RUN apt-get update && apt-get install -y gnupg2 \
-    && apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FCAE2A0E115C3D8A \
-#   && echo "deb http://cran.stat.auckland.ac.nz/bin/linux/debian jessie-cran34/" | tee -a /etc/apt/sources.list.d/R.list \
-    && echo "deb http://cran.stat.auckland.ac.nz/bin/linux/debian buster-cran35/" | tee -a /etc/apt/sources.list.d/R.list \
-    && apt-get update \
+RUN apt-get update \
     && apt-get install -y -q \
-        r-base-core \
         libssl-dev \
- #       libssl1.0.0 \
+ #      libssl1.0.0 \
         gnupg2 \
         libxml2-dev \
         libcairo2-dev \
@@ -60,6 +58,7 @@ RUN apt-get update && apt-get install -y gnupg2 \
     && rm -f shiny-server.deb \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
 
 # expose ports
 EXPOSE 3838
