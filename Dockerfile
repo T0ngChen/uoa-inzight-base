@@ -8,19 +8,8 @@
 #
 # ---------------------------------------------
 
-# Install R version 3.5
-FROM r-base:3.6.1
 
-# Install Ubuntu packages
-RUN apt-get update && apt-get install -y \
-    sudo \
-    gdebi-core \
-    pandoc \
-    pandoc-citeproc \
-    libcurl4-gnutls-dev \
-    libcairo2-dev/unstable \
-    libxt-dev \
-    libssl-dev
+FROM r-base:3.6.1
 
 
 RUN apt-get update \
