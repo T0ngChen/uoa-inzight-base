@@ -12,6 +12,7 @@
 FROM r-base:3.6.1
 
 COPY shiny-server.sh /opt/
+COPY shiny-server.conf  /etc/init/shiny-server.conf
 
 RUN apt-get update \
     && apt-get install -y -q \
